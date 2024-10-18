@@ -1,19 +1,27 @@
 import { getStoryblokApi, StoryblokStory } from "@storyblok/react/rsc";
 import { FeaturedAlbum } from "@/components/FeaturedAlbum";
+import { draftMode } from "next/headers";
 
 const fetchAlbumsPage = async () => {
+    const { isEnabled } = draftMode();
     const client = getStoryblokApi();
     const response = await client.getStory(`albums`, {
-        version: process.env.NODE_ENV === "development" ? "draft" : "published",
+        version: process.env.NODE_ENV === "development" || isEnabled
+            ? "draft"
+            : "published",
     });
     return response.data.story;
 };
 
 const fetchAllAlbums = async () => {
+    const { isEnabled } = draftMode();
     const client = getStoryblokApi();
     const response = await client.getStories({
         content_type: "album",
-        version: process.env.NODE_ENV === "development" ? "draft" : "published",
+        version:
+    process.env.NODE_ENV === "development" || isEnabled
+        ? "draft"
+        : "published",
         resolve_relations: "album.artist",
     })
     return response.data.stories;
