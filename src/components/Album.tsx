@@ -6,6 +6,7 @@ export const Album = (props: any) => {
         month: "numeric",
         day: "numeric",
     };
+    // @ts-expect-error sgsfgfsgsfg
     const releaseDate = new Date(`${props.blok.release_date}`).toLocaleDateString("en-GB", options);
     return (
         <main className="container mx-auto px-4 w-full pt-32 pb-16">

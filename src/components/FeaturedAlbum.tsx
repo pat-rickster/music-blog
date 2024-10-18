@@ -6,6 +6,7 @@ export const FeaturedAlbum = (props: any) => {
         month: "numeric",
         day: "numeric",
     };
+    // @ts-expect-error sgsfgfsgsfg
     const releaseDate = new Date(`${props.story.content.release_date}`).toLocaleDateString("en-GB", options);
     return (
         <div className="md:flex md:p-0 bg-white rounded-md shadow-md overflow-hidden">
