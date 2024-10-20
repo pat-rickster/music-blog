@@ -1,7 +1,7 @@
 import { getStoryblokApi, StoryblokStory } from "@storyblok/react/rsc";
 import { draftMode } from "next/headers";
 
-export const generateStaticParams = async () => {
+export const generateStaticParams = async (slug: any) => {
     const client = getStoryblokApi();
     const response = await client.getStories({
         content_type: "album",
