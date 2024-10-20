@@ -1,7 +1,22 @@
-import { getStoryblokApi, StoryblokStory } from "@storyblok/react/rsc";
+import { getStoryblokApi, StoryblokStory, storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import { draftMode } from "next/headers";
 
-export const generateStaticParams = async (slug: any) => {
+const cachedFetch = (input: any, init?: any): Promise<Response> => {
+    return fetch(input, {
+        ...init,
+        cache: process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
+    });
+};
+
+storyblokInit({
+    accessToken: process.env.STORYBLOK_TOKEN,
+    use: [apiPlugin],
+    apiOptions: {
+        fetch: cachedFetch,
+    },
+});
+
+export const generateStaticParams = async () => {
     const client = getStoryblokApi();
     const response = await client.getStories({
         content_type: "album",
