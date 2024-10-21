@@ -1,20 +1,5 @@
-import { getStoryblokApi, StoryblokStory, storyblokInit, apiPlugin } from "@storyblok/react/rsc";
+import { getStoryblokApi, StoryblokStory } from "@storyblok/react/rsc";
 import { draftMode } from "next/headers";
-
-const cachedFetch = (input: any, init?: any): Promise<Response> => {
-    return fetch(input, {
-        ...init,
-        cache: process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-    });
-};
-
-storyblokInit({
-    accessToken: process.env.STORYBLOK_TOKEN,
-    use: [apiPlugin],
-    apiOptions: {
-        fetch: cachedFetch,
-    },
-});
 
 const fetchHomePage = async () => {
     const { isEnabled } = draftMode();
@@ -28,7 +13,9 @@ const fetchHomePage = async () => {
 
 const HomePage = async () => {
     const story = await fetchHomePage();
-    return <StoryblokStory story={story} />;
+    return <StoryblokStory
+        bridgeOptions={{ resolveRelations: ["featured_artists.artists", "featured_albums.albums", "album.artist", "album.genre", "featured_artist.on_tour"] }}
+        story={story} />;
 }
 
 export default HomePage;
