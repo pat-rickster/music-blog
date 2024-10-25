@@ -14,7 +14,7 @@ export const generateStaticParams = async () => {
 }
 
 const fetchArtistPage = async (slug: string) => {
-    const { isEnabled } = draftMode();
+    const { isEnabled } = await draftMode();
     const client = getStoryblokApi();
     const response = await client.getStory(`artists/${slug}`, {
         version: process.env.NODE_ENV === "development" || isEnabled

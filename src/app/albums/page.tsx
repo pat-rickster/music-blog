@@ -3,7 +3,7 @@ import { FeaturedAlbum } from "@/components/FeaturedAlbum";
 import { draftMode } from "next/headers";
 
 const fetchAlbumsPage = async () => {
-    const { isEnabled } = draftMode();
+    const { isEnabled } = await draftMode();
     const client = getStoryblokApi();
     const response = await client.getStory(`albums`, {
         version: process.env.NODE_ENV === "development" || isEnabled
@@ -14,7 +14,7 @@ const fetchAlbumsPage = async () => {
 };
 
 const fetchAllAlbums = async () => {
-    const { isEnabled } = draftMode();
+    const { isEnabled } = await draftMode();
     const client = getStoryblokApi();
     const response = await client.getStories({
         content_type: "album",
