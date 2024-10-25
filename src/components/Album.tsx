@@ -1,4 +1,4 @@
-import { renderRichText } from "@storyblok/react/rsc";
+import { renderRichText, storyblokEditable } from "@storyblok/react/rsc";
 
 export const Album = (props: any) => {
     const options = {
@@ -9,7 +9,7 @@ export const Album = (props: any) => {
     // @ts-expect-error sgsfgfsgsfg
     const releaseDate = new Date(`${props.blok.release_date}`).toLocaleDateString("en-GB", options);
     return (
-        <main className="container mx-auto px-4 w-full pt-32 pb-16">
+        <main {...storyblokEditable(props.blok)} className="container mx-auto px-4 w-full pt-32 pb-16">
             <h1 className="text-3xl md:text-5xl font-bold">
                 {props.blok.name}
             </h1>

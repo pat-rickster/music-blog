@@ -1,8 +1,8 @@
-import { renderRichText } from "@storyblok/react/rsc";
+import { renderRichText, storyblokEditable } from "@storyblok/react/rsc";
 
 export const Artist = (props: any) => {
     return (
-        <main className="container mx-auto px-4 w-full pt-32 pb-16">
+        <main {...storyblokEditable(props.blok)} className="container mx-auto px-4 w-full pt-32 pb-16">
             <h1 className="text-3xl md:text-5xl font-bold">
                 {props.blok.name}
             </h1>

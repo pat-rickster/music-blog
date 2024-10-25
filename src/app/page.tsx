@@ -3,7 +3,6 @@ import { draftMode } from "next/headers";
 
 const fetchHomePage = async () => {
     const { isEnabled } = await draftMode();
-    console.log(">>>", isEnabled);
     const client = getStoryblokApi();
     const response = await client.getStory(`home`, {
         version: process.env.NODE_ENV === "development" || isEnabled ? "draft" : "published",
