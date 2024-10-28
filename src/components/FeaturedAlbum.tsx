@@ -11,7 +11,7 @@ export const FeaturedAlbum = (props: any) => {
     return (
         <div className="md:flex md:p-0 bg-white rounded-md shadow-md overflow-hidden">
             <img className="w-24 h-24 md:w-48 md:h-auto md:rounded-none mx-auto md:mx-0"
-                 src={props.story.content.main_image.filename}
+                 src={`${props.story.content.main_image.filename}/m/300x300/filters:quality(70)`} alt={props.story.content.main_image.alt} loading={"lazy"}
             />
             <div className="pt-6 md:p-6 text-center md:text-left space-y-1">
                 <ul className="flex gap-2">

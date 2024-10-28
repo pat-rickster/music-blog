@@ -24,7 +24,8 @@ const fetchAlbumPage = async (slug: string) => {
 };
 
 const AlbumPage = async (props: any) => {
-    const story = await fetchAlbumPage(props.params.slug);
+    const { slug } = await props.params;
+    const story = await fetchAlbumPage(slug);
     return <StoryblokStory story={story} />;
 }
 
