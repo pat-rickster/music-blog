@@ -47,7 +47,7 @@ export default function RootLayout({
           <body
               className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           >
-          <header>
+          <header className="sticky top-0 bg-white shadow-md">
               <nav className="container mx-auto px-4 w-full py-8 flex justify-between">
                   <Link href={"/"}>Home</Link>
                   <Link href={"/albums"}>Albums</Link>
