@@ -17,6 +17,7 @@ export const Album = (props: any) => {
     const ratingInactive = [...Array(5 - ratingNumber)].map((_, i) => {
         return (<li key={i}><StarIcon className="size-5 text-gray-200 inline-block"/></li>);
     });
+    console.log(`test: ${props.blok.tracklist}`);
     return (
         <main {...storyblokEditable(props.blok)} className="container mx-auto px-4 w-full pt-32 pb-16">
             <h1 className="text-3xl md:text-5xl font-bold">
@@ -49,9 +50,9 @@ export const Album = (props: any) => {
                 sizes="(max-width: 1538px) 100vw, 1504px"
                 priority={true}
             />
-            <p className="mt-12 text-lg md:text-2xl md:leading-relaxed">
-                {props.blok.introduction}
-            </p>
+
+            {/* {props.blok.tracklist ? <><p>Tracklist:</p><ol className="list-decimal list-inside"><li></li></ol></> : ""} */}
+
             <div
                 className="prose md:prose-lg mt-16 max-w-none"
                 dangerouslySetInnerHTML={{
